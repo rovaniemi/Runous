@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+    <title>Grid Template for Bootstrap</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="css/grid.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <div class="container-fluid">
+
+      <div class="row">
+        <h1>Joku runo sydeemi, irene keksi nimi</h1>
+        <div class="col-xs-8">
+          <form>
+            <div class="form-group">
+              <label for="runonAloitusSana">Ensimmäinen sana</label>
+              <input type="text" class="form-control" id="runonAloitusSana" placeholder="Sana">
+            </div>
+            <div class="form-group">
+              <label for="sanojenMaara">Määrä</label>
+              <input type="number" class="form-control" id="sanojenMaara" placeholder="Määrä">
+            </div>
+            <button type="submit" class="btn btn-default" onclick="asetaArvo();">Luo runo</button>
+          </form>
+        </div>
+      <div class="col-xs-8" style="
+          border: none;
+          margin-top: 1em;
+          background-color: white;">
+      <h3 id="runous"> </h3>
+      </div>
+    </div>
+  </div> <!-- /container -->
+    <script src="js/functions.js"></script>
+  </body>
+</html>

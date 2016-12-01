@@ -38,17 +38,19 @@ function luoRuno() {
       //splittaa runon jokaisen välimerkin kohdalta
       var array = string.split(" ");
       console.log(array);
-//      console.log(array.length);
-      for (i = 0; i < array.length; i++) {
+      console.log('arrayn pituus: ' + array.length);
+      for (i = 0; i < array.length-1; i++) {
 
     	     if (i % 3 == 0) {
-               if ( i != 0 && i != array.length-1) {
-                //liitetään sanan loppuun pilkku ja line break
+               if ( i != 0 && i != array.length-2) {
+                console.log('i: ' + i);
+                console.log('liitetään sanan ' + array[i] + ' loppuun pilkku ja line break');
                 array[i] = array[i] + ', <br>';
                }
     	     }          
       }
       array[array.length-2] = array[array.length-2] + '.'; //lisätään loppuun piste, viimeinen listan alkio on tyhjä
+      console.log('Lisätään piste sanan ' + array[array.length-2] + ' perään');
 // loppupiste tulee jostain syystä omalle rivilleen, kun sanoja on 10
       var divided = array.join(' ');
       return divided;

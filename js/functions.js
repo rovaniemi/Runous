@@ -1,51 +1,54 @@
 function luoRuno() {
-    //Aloitussana
+    //Käyttäjän määrittämä aloitussana
+    var sana = document.getElementById("runonAloitusSana").value;
+    //Käyttäjän määrittelemä sanojen määrä
+    var maara = document.getElementById("sanojenMaara").value;
+    var runo = '';
+    var tarkastin = 0;
+    var j = 0;
 
-  var sana = document.getElementById("runonAloitusSana").value;
-  //Sanojen määrä
-  var maara = document.getElementById("sanojenMaara").value;
-  var runo = '';
-
-  var j = 0;
-  //data.jsonissa määritelty var data
-  for(var i = 0; i < maara; i++){
-    console.log(i + ':nnes sana ' + sana);
-    if(data.hasOwnProperty(sana)){
-	  console.log('Sanan kamut: ' + data[sana]);
-      if(data[sana].length >= 2){
-        j = Math.floor(Math.random() * 3);
-      }
-    sana = data[sana][j];
-    j = 0;
-    runo += sana + ' ';
-    
-    } else {
-      alert('Sanaa ei löytynyt Kalevalasta');
-      location.reload();
-      return;
+    //data.jsonissa on määritelty muuttuja data
+    for(var i = 0; i < maara; i++){
+        console.log(i + ':nnes sana ' + sana);
+        if(data.hasOwnProperty(sana)){
+            runo += sana + ' ';
+	          console.log('Sanan kamut: ' + data[sana]);
+            j = Math.floor(Math.random() * data[sana].length);
+            sana = data[sana][j];
+            j = 0;
+        } else {
+            tarkastin = 1;
+        }
     }
-  }
+  // Runon ensimmäinen kirjain isolla
   runo = capitalizeFirstLetter(runo);
-  runo = divide(runo);
-
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
-
+  console.log('runo: ' + runo);
+  runo = divide(runo);
   function divide(string) {
-    var array = string.split(" ");
-    for (i = 0; i < maara; i++) {
-    	 if (i % 5 == 0) {
-      	 array.splice(i, 0, "<br>");
-         var lineStarter = array[i + 1];
-         console.log('lineStarter: ' + lineStarter);
-         lineStarter = capitalizeFirstLetter(lineStarter);
-         array.splice((i+1), 1, lineStarter);
-    	}
-    }
-    var divided = array.join(" ");
-    return divided;
+      //splittaa runon jokaisen välimerkin kohdalta
+      var array = string.split(" ");
+      console.log(array);
+      console.log(array.length);
+      for (i = 0; i < array.length; i++) {
+
+    	     if (i % 5 == 0) {
+             console.log('asdifjasdf');
+      	       array.splice(i, 0, "<br>");
+               array[i + 1] = capitalizeFirstLetter(array[i + 1]);
+    	     }
+      }
+      var divided = array.join(" ");
+      return divided;
   }
+
+  //jos tarkastin on muuttunut ykköseksi, määritellään ettei runoa syntynyt
+  if(tarkastin == 1){
+      runo = 'Aloitussanaa ei löytynyt materiaalista';
+  }
+
+  //printataan runo
   document.getElementById("runous").innerHTML = runo;
 }
-

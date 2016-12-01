@@ -1,49 +1,51 @@
 function luoRuno() {
     //Aloitussana
 
-    var sana = document.getElementById("runonAloitusSana").value;
-    //Sanojen määrä
-    var maara = document.getElementById("sanojenMaara").value;
-    var sananSailytys = '';
-    var runo = '';
+  var sana = document.getElementById("runonAloitusSana").value;
+  //Sanojen määrä
+  var maara = document.getElementById("sanojenMaara").value;
+  var runo = '';
 
-    var j = 0;
-    //data.jsonissa määritelty var data
-    for(var i = 0; i < maara; i++){
-        if(data.hasOwnProperty(sana)){
-          if(sana.length > 3){
-            j = Math.floor(Math.random() * 3);
-          }
-        if(i == maara - 1){
-            runo += sana;
-        } else {
-          runo += sana + ' ';
-        }
-        sananSailytys = sana;
-        sana = data[sana][j];
-        j = 0;
-          } else {
-            sana = data[sananSailytys][0];
-          }
+  var j = 0;
+  //data.jsonissa määritelty var data
+  for(var i = 0; i < maara; i++){
+    console.log(i + ':nnes sana ' + sana);
+    if(data.hasOwnProperty(sana)){
+	  console.log('Sanan kamut: ' + data[sana]);
+      if(data[sana].length >= 2){
+        j = Math.floor(Math.random() * 3);
+      }
+    sana = data[sana][j];
+    j = 0;
+    runo += sana + ' ';
+    
+    } else {
+      alert('Sanaa ei löytynyt Kalevalasta');
+      location.reload();
+      return;
     }
-	runo = capitalizeFirstLetter(runo);
-	runo = divide(runo);
+  }
+  runo = capitalizeFirstLetter(runo);
+  runo = divide(runo);
 
-    function capitalizeFirstLetter(string) {
-      return string.charAt(0).toUpperCase() + string.slice(1);
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
+  function divide(string) {
+    var array = string.split(" ");
+    for (i = 0; i < maara; i++) {
+    	 if (i % 5 == 0) {
+      	 array.splice(i, 0, "<br>");
+         var lineStarter = array[i + 1];
+         console.log('lineStarter: ' + lineStarter);
+         lineStarter = capitalizeFirstLetter(lineStarter);
+         array.splice((i+1), 1, lineStarter);
+    	}
     }
-
-    function divide(string) {
-	var array = string.split(" ");
-	for (i = 0; i < maara; i++) {
-		if (i % 4 == 0) {
-			array.splice(i, 0, "<br>");
-		}
-	}
-	var divided = array.join(" ");
-	return divided;
-    }
-
-    document.getElementById("runous").innerHTML = runo;
+    var divided = array.join(" ");
+    return divided;
+  }
+  document.getElementById("runous").innerHTML = runo;
 }
 

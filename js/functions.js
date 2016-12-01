@@ -26,11 +26,24 @@ function luoRuno() {
             sana = data[sananSailytys][0];
           }
     }
-    runo = capitalizeFirstLetter(runo);
+	runo = capitalizeFirstLetter(runo);
+	runo = divide(runo);
+
     function capitalizeFirstLetter(string) {
       return string.charAt(0).toUpperCase() + string.slice(1);
     }
-    
+
+    function divide(string) {
+	var array = string.split(" ");
+	for (i = 0; i < maara; i++) {
+		if (i % 4 == 0) {
+			array.splice(i, 0, "<br>");
+		}
+	}
+	var divided = array.join(" ");
+	return divided;
+    }
 
     document.getElementById("runous").innerHTML = runo;
 }
+

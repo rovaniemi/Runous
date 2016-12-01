@@ -37,12 +37,12 @@ function luoRuno() {
   function divide(string) {
       //splittaa runon jokaisen välimerkin kohdalta
       var array = string.split(" ");
-      array = array.filter(Boolean);
+      array = array.filter(Boolean); //poistaa listasta tyhjät alkiot
       console.log(array);
       console.log('arrayn pituus: ' + array.length);
-      for (i = 0; i < array.length-1; i++) {
+      for (i = 0; i < array.length; i++) {
 
-    	     if (i % 3 == 0) {
+    	     if ((i+1) % 4 == 0) {
                if ( i != 0 && i != array.length-1) {
                 console.log('i: ' + i);
                 console.log('liitetään sanan ' + array[i] + ' loppuun pilkku ja line break');

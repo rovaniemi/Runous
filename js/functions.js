@@ -7,12 +7,17 @@ function luoRuno() {
     var tarkastin = 0;
     var j = 0;
 
+    if (maara > 24 || maara < 3) {
+      document.getElementById("runous").innerHTML = 'Sanoja tulee olla enemmän kuin 2 ja vähemmän kuin 25.'; 
+      return;    
+    }
+
     //data.jsonissa on määritelty muuttuja data
     for(var i = 0; i < maara; i++){
-        console.log(i + ':nnes sana ' + sana);
+//        console.log(i + ':nnes sana ' + sana);
         if(data.hasOwnProperty(sana)){
             runo += sana + ' ';
-	          console.log('Sanan kamut: ' + data[sana]);
+//	          console.log('Sanan kamut: ' + data[sana]);
             j = Math.floor(Math.random() * data[sana].length);
             sana = data[sana][j];
             j = 0;
@@ -22,31 +27,37 @@ function luoRuno() {
     }
   // Runon ensimmäinen kirjain isolla
   runo = capitalizeFirstLetter(runo);
+
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
-  console.log('runo: ' + runo);
+  
+//  console.log('runo: ' + runo);
+
   runo = divide(runo);
   function divide(string) {
       //splittaa runon jokaisen välimerkin kohdalta
       var array = string.split(" ");
       console.log(array);
-      console.log(array.length);
+//      console.log(array.length);
       for (i = 0; i < array.length; i++) {
 
-    	     if (i % 5 == 0) {
-             console.log('asdifjasdf');
-      	       array.splice(i, 0, "<br>");
-               array[i + 1] = capitalizeFirstLetter(array[i + 1]);
-    	     }
+    	     if (i % 3 == 0) {
+               if ( i != 0 && i != array.length-1) {
+                //liitetään sanan loppuun pilkku ja line break
+                array[i] = array[i] + ', <br>';
+               }
+    	     }          
       }
-      var divided = array.join(" ");
+      array[array.length-2] = array[array.length-2] + '.'; //lisätään loppuun piste, viimeinen listan alkio on tyhjä
+// loppupiste tulee jostain syystä omalle rivilleen, kun sanoja on 10
+      var divided = array.join(' ');
       return divided;
   }
 
   //jos tarkastin on muuttunut ykköseksi, määritellään ettei runoa syntynyt
   if(tarkastin == 1){
-      runo = 'Aloitussanaa ei löytynyt materiaalista';
+      runo = 'Aloitussanaa ei löytynyt Kalevalasta.';
   }
 
   //printataan runo

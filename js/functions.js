@@ -8,8 +8,7 @@ function luoRuno() {
     var j = 0;
 
     if (maara > 24 || maara < 3) {
-      document.getElementById("runous").innerHTML = 'Sanoja tulee olla enemmän kuin 2 ja vähemmän kuin 25.'; 
-      return;    
+      tarkastin = 2;    
     }
 
     //data.jsonissa on määritelty muuttuja data
@@ -31,7 +30,7 @@ function luoRuno() {
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
-  
+
 //  console.log('runo: ' + runo);
 
   runo = divide(runo);
@@ -56,8 +55,11 @@ function luoRuno() {
   }
 
   //jos tarkastin on muuttunut ykköseksi, määritellään ettei runoa syntynyt
-  if(tarkastin == 1){
+  if (tarkastin == 1){
       runo = 'Aloitussanaa ei löytynyt Kalevalasta.';
+    }
+  if (tarkastin == 2) {
+    runo = "Sanoja on oltava enemmän kuin kaksi ja vähemmän kuin 25."
   }
 
   //printataan runo

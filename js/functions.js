@@ -30,7 +30,7 @@ function luoRuno() {
     function capitalizeFirstLetter(string) {
       return string.charAt(0).toUpperCase() + string.slice(1);
     }
-    runo += '.';
+    
 
     document.getElementById("runous").innerHTML = runo;
 }

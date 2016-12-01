@@ -37,19 +37,20 @@ function luoRuno() {
   function divide(string) {
       //splittaa runon jokaisen välimerkin kohdalta
       var array = string.split(" ");
+      array = array.filter(Boolean);
       console.log(array);
       console.log('arrayn pituus: ' + array.length);
       for (i = 0; i < array.length-1; i++) {
 
     	     if (i % 3 == 0) {
-               if ( i != 0 && i != array.length-2) {
+               if ( i != 0 && i != array.length-1) {
                 console.log('i: ' + i);
                 console.log('liitetään sanan ' + array[i] + ' loppuun pilkku ja line break');
                 array[i] = array[i] + ', <br>';
                }
     	     }          
       }
-      array[array.length-2] = array[array.length-2] + '.'; //lisätään loppuun piste, viimeinen listan alkio on tyhjä
+      array[array.length-1] = array[array.length-1] + '.'; 
       console.log('Lisätään piste sanan ' + array[array.length-2] + ' perään');
 // loppupiste tulee jostain syystä omalle rivilleen, kun sanoja on 10
       var divided = array.join(' ');

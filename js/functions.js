@@ -42,11 +42,7 @@ function luoRuno() {
       console.log('arrayn pituus: ' + array.length);
       for (i = 0; i < array.length; i++) {
 
-<<<<<<< HEAD
     	     if ((i+1) % 4 == 0) {
-=======
-    	     if (i % 4 == 0) {
->>>>>>> 07cfaa0eafd7ffab44fed4e22729bd814c07d446
                if ( i != 0 && i != array.length-1) {
                 console.log('i: ' + i);
                 console.log('liitetään sanan ' + array[i] + ' loppuun pilkku ja line break');
@@ -55,7 +51,7 @@ function luoRuno() {
     	     }
       }
       array[array.length-1] = array[array.length-1] + '.';
-      console.log('Lisätään piste sanan ' + array[array.length-2] + ' perään');
+      console.log('Lisätään piste sanan ' + array[array.length-1] + ' perään');
 // loppupiste tulee jostain syystä omalle rivilleen, kun sanoja on 10
       var divided = array.join(' ');
       return divided;
@@ -66,7 +62,7 @@ function luoRuno() {
       runo = 'Aloitussanaa ei löytynyt Kalevalasta.';
     }
   if (tarkastin == 2) {
-    runo = "Sanoja on oltava enemmän kuin kaksi ja vähemmän kuin 25."
+    runo = 'Sanoja on oltava enemmän kuin kaksi ja vähemmän kuin 25.';
   }
 
   //printataan runo

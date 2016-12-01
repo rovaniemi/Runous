@@ -7,19 +7,30 @@ function luoRuno() {
     var sananSailytys = '';
     var runo = '';
 
-    var j = 1;
+    var j = 0;
     //data.jsonissa määritelty var data
     for(var i = 0; i < maara; i++){
         if(data.hasOwnProperty(sana)){
-            runo += sana + ' ';
-            sananSailytys = sana;
-            sana = data[sana][j];
-            j = 1;
+          if(sana.length > 3){
+            j = Math.floor(Math.random() * 3);
+          }
+        if(i == maara - 1){
+            runo += sana;
         } else {
-            sana = data[sananSailytys][j++];
+          runo += sana + ' ';
         }
+        sananSailytys = sana;
+        sana = data[sana][j];
+        j = 0;
+          } else {
+            sana = data[sananSailytys][0];
+          }
     }
-
+    runo = capitalizeFirstLetter(runo);
+    function capitalizeFirstLetter(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+    runo += '.';
 
     document.getElementById("runous").innerHTML = runo;
 }

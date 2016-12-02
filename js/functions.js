@@ -1,12 +1,13 @@
 function luoRuno() {
     //Käyttäjän määrittämä aloitussana
-    var sana = document.getElementById("runonAloitusSana").value;
+    var word = document.getElementById("runonAloitusSana").value;
     //Käyttäjän määrittelemä sanojen määrä
     var maara = document.getElementById("sanojenMaara").value;
     var runo = '';
     var tarkastin = 0;
     var j = 0;
-
+    var sana = word.toLowerCase();
+    
     if (maara > 24 || maara < 3) {
       tarkastin = 2;
     }

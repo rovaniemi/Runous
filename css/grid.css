@@ -12,10 +12,14 @@ h3 {
   text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
 }
 .runo{
-  height: 12em;
+  height: 14em;
 }
 
+.coll {
+  margin: 0.5em 1em 0 1em;
+}
 .row {
+
 }
 .intro-header {
     padding-bottom: 50px;

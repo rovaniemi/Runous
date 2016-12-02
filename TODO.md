@@ -1,11 +1,11 @@
 ## Pitäisi toimia
 - [x] Runojen rivipituudet kuntoon, ja piste oikeaan paikkaan
+- [x] Haut ei ole casesensitiivisiä
 
 ## Tehtävää 
 - [ ] Mobiili näkymään oikean kokoiset tekstit ettei neljän sanan rivi hyppää uudelle riville
 - [ ] Ulkoasuun parannuksia
 - [ ] Taustakuva
-- [ ] Haut ei ole casesensitive
 
 ## Ideoita tulevaisuutta varten
 

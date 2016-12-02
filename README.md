@@ -8,6 +8,6 @@ Makes poems from data
 *  User can choose first word
 *  User can specify the length of the poem
 
-###### Still under construction
+#### Still under construction
 
-[todo](https://github.com/rovaniemi/runous/blob/master/TODO.md)
+[Todo](https://github.com/rovaniemi/runous/blob/master/TODO.md)

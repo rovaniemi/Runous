@@ -40,9 +40,9 @@ function luoRuno() {
       array = array.filter(Boolean); //poistaa listasta tyhjät alkiot
       console.log(array);
       console.log('arrayn pituus: ' + array.length);
-      for (i = 0; i < array.length; i++) {
+      for (i = 0; i < array.length - 1; i++) {
 
-    	     if ((i+1) % 4 == 0) {
+    	     if (i % 4 == 0) {
                if ( i != 0 && i != array.length-1) {
                 console.log('i: ' + i);
                 console.log('liitetään sanan ' + array[i] + ' loppuun pilkku ja line break');

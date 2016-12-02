@@ -17,6 +17,7 @@ h3 {
     color: #f8f8f8;
     background: url(../img/intro-bg.jpg) no-repeat center center;
     background-size: cover;
+    height: 92vh;
 }
 .intro-message {
     position: relative;

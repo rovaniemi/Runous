@@ -27,14 +27,12 @@
               <form>
 
                 <div class="form-group">
-                  <label for="runonAloitusSana">Ensimmäinen sana</label>
-                  <input type="text" class="form-control" id="runonAloitusSana" placeholder="Sana">
+                  <input type="text" class="form-control" id="runonAloitusSana" placeholder="Runon ensimmäinen sana">
 
               </div>
 
                 <div class="form-group">
-                  <label for="sanojenMaara">Määrä</label>
-                  <input type="number" class="form-control" id="sanojenMaara" placeholder="Määrä">
+                  <input type="number" min="3" max="24" class="form-control" id="sanojenMaara" placeholder="Sanojen määrä">
                 </div>
 
                 <button type="submit" class="btn btn-default" onclick="luoRuno();return false;">Luo runo</button>

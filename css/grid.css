@@ -12,7 +12,12 @@ h3 {
   text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
 }
 .runo{
-  height: 14em;
+  min-height: 14em;
+}
+.form-group {
+  width: 14em;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .coll {

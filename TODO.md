@@ -5,6 +5,7 @@
 - [ ] Mobiili näkymään oikean kokoiset tekstit ettei neljän sanan rivi hyppää uudelle riville
 - [ ] Ulkoasuun parannuksia
 - [ ] Taustakuva
+- [ ] Haut ei ole casesensitive
 
 ## Ideoita tulevaisuutta varten
 

@@ -1,6 +1,10 @@
 body {
-  height: 100vh;
   background-color: #f8f8f8;
+}
+
+.wrapper {
+  min-height: 100%;
+  position: relative;
 }
 
 h3 {

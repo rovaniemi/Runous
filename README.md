@@ -2,11 +2,11 @@
 
 Makes poems from data
 
-###### Current features
+#### Current features
 
-[x] Write poem
-[x] User can choose first word
-[x] User can specify the length of the poem
+*  Write poem
+*  User can choose first word
+*  User can specify the length of the poem
 
 ###### Still under construction
 

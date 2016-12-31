@@ -4,8 +4,8 @@ Makes poems from data
 
 #### Current features
 
-*  Write poem
-*  User can choose first word
+*  Generating a poem from JSON data
+*  User can choose the first word
 *  User can specify the length of the poem
 
 #### Still under construction

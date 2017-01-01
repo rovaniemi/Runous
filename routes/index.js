@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var data = require('../json/data');
+var data = require('../json/data.json');
 var functions = require('../js/functions');
 
 router.get('/', function(req, res, next) {

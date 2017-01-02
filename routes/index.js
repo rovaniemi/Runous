@@ -13,22 +13,22 @@ router.post('/getpoem',function(req,res){
   var poem = '';
   word = word.toLowerCase();
 
-  if (amount > 24 || amount < 3) {
+  if(amount > 24 || amount < 3) {
     poem = 'Sanoja on oltava enemmän kuin kaksi ja vähemmän kuin 25.';
     res.send(poem);
     return;
   }
 
   for(var i = 0; i < amount; i++){
-      if(data.hasOwnProperty(word)){
-          poem += word + ' ';
-          var j = Math.floor(Math.random() * data[word].length);
-          word = data[word][j];
-      } else {
-          poem = 'Aloitussanaa ei löytynyt Kalevalasta.';
-          res.send(poem);
-          return;
-      }
+    if(data.hasOwnProperty(word)){
+        poem += word + ' ';
+        var j = Math.floor(Math.random() * data[word].length);
+        word = data[word][j];
+    } else {
+        poem = 'Aloitussanaa ei löytynyt Kalevalasta.';
+        res.send(poem);
+        return;
+    }
   }
 
   poem = functions.capitalizeFirstLetter(poem);

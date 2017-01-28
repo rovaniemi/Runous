@@ -7,7 +7,7 @@ exports.capitalizeFirstLetter = function (string) {
 exports.divide = function (string) {
   var array = string.split(" ");
   array = array.filter(Boolean); //poistaa listasta tyhjät alkiot
-  console.log(array);
+  console.log('Jaettava stringi: ' + array);
   console.log('arrayn pituus: ' + array.length);
   for (i = 0; i < array.length - 1; i++) {
 
@@ -24,5 +24,8 @@ exports.divide = function (string) {
   console.log('Lisätään piste sanan ' + array[array.length-1] + ' perään');
   var divided = array.join(' ');
   return divided;
+};
 
+exports.sortByProb = function (x,y) {
+  return y.prob - x.prob;
 };

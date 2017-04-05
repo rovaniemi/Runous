@@ -4,9 +4,6 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var mongo = require('mongodb');
-var monk = require('monk');
-var db = monk('localhost:27017/tietok');
 var data = require('./json/newData.json');
 
 var index = require('./routes/index');
@@ -24,16 +21,16 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(require('less-middleware')(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(function(req,res,next){
-    req.db = db;
-    try {
-      var testi = db.create('testi');
-      testi.insert(data);
-    } catch(err) {
-      console.log('There was an error creating the database');
-    }
-    next();
-});
+// app.use(function(req,res,next){
+//     req.db = db;
+//     try {
+//       var testi = db.create('testi');
+//       testi.insert(data);
+//     } catch(err) {
+//       console.log('There was an error creating the database');
+//     }
+//     next();
+// });
 
 app.use('/', index);
 

@@ -27,7 +27,7 @@
                             <div class="form-group">
                                 <input type="number" min="3" max="24" class="form-control" id="sanojenMaara" name="amount" placeholder="Sanojen määrä">
                             </div>
-                            <button type="submit" class="btn btn-default" onclick="getPoem();return false;">Luo runo</button>
+                            <button type="submit" class="btn btn-default" onclick="getPoem(); return false">Luo runo</button>
                         </form>
                         <div>
                             <h3 id="runous"></h3>

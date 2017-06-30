@@ -21,17 +21,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(require('less-middleware')(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
-// app.use(function(req,res,next){
-//     req.db = db;
-//     try {
-//       var testi = db.create('testi');
-//       testi.insert(data);
-//     } catch(err) {
-//       console.log('There was an error creating the database');
-//     }
-//     next();
-// });
-
 app.use('/', index);
 
 app.use(error);

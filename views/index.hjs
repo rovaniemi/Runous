@@ -32,6 +32,10 @@
                         <div>
                             <h3 id="runous"></h3>
                         </div>
+                        <div id="buttons">
+                          <button type="button" class="vote btn btn-default" onclick="votePoem(1); return false">Vote up</button>
+                          <button type="button" class="vote btn btn-default" onclick="votePoem(-1); return false">Vote down</button>
+                        </div>
                     </div>
                 </div>
             </div>

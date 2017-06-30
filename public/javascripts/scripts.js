@@ -23,7 +23,34 @@ function getPoem() {
         // build a json object
         var data = {"word" : word, "counter" : counter};
         $.post('/getpoem', data, function(resp) {
-            var response = resp;
             document.getElementById("runous").innerHTML = resp;
+            if (resp === "Sanaa ei löytynyt Kalevalasta.") {
+              hideVoteButtons();
+            } else {
+              showVoteButtons();
+            }
         });
+}
+
+function votePoem(vote) {
+  event.preventDefault();
+  var poem = document.getElementById("runous").innerHTML;
+  var data = {"poem" : poem, "vote" : vote};
+  $.post('/votepoem', data, function() {
+    hideVoteButtons();
+  });
+}
+
+function hideVoteButtons() {
+  var elements = document.getElementsByClassName("vote");
+  for (i = 0; i < elements.length; i++) {
+      elements[i].style.display = "none";
+  }
+}
+
+function showVoteButtons() {
+  var elements = document.getElementsByClassName("vote");
+  for (i = 0; i < elements.length; i++) {
+      elements[i].style.display = "inline";
+  }
 }

@@ -1,10 +1,11 @@
 var exports = module.exports = {};
 var controller = require('../db/controller');
 var helpers = require('../js/helpers');
+var lastVoted = '';
 
-exports.getPoem = function(word, length, cb) {
+exports.getPoem = function (word, length, cb) {
     var poem = word + ' ';
-    createPoem(poem, length, function(words) {
+    createPoem(poem, length, function (words) {
         if (!words) {
             poem = 'Sanaa ei löytynyt Kalevalasta.';
         } else {
@@ -15,48 +16,53 @@ exports.getPoem = function(word, length, cb) {
     });
 };
 
-exports.updatePoem = function(poem, vote, cb) {
-    console.log('updating poem');
-  var words = poem.split(" ");
-  for (i=0; i<words.length-1;i++) {
-    if (/^</.test(words[i])) {
-      i++;
+exports.updatePoem = function (poem, vote, cb) {
+    console.log()
+    if (lastVoted.localeCompare(poem) !== 0) {
+        lastVoted = poem;
+        var words = poem.split(" ");
+        for (i = 0; i < words.length - 1; i++) {
+            if (/^</.test(words[i])) {
+                i++;
+            }
+            word = words[i].replace(/,/g, "");
+            word = word.toLowerCase();
+            if (/^</.test(words[i + 1])) {
+                i++;
+            }
+            nextWord = words[i + 1].replace(/,/g, "");
+            nextWord = nextWord.toLowerCase();
+            controller.getRelatedWordsFromDB(nextWord, word, updateProbability, vote);
+        }
+        cb();
+    } else {
+        cb('Runoa on jo äänestetty.')
     }
-    word = words[i].replace(/[^a-zåäöA-ZÅÄÖ ]/g, "");
-    word = word.toLowerCase();
-    if (/^</.test(words[i+1])) {
-      i++;
-    }
-    nextWord = words[i+1].replace(/[^a-zåäöA-ZÅÄÖ ]/g, "");
-    nextWord = nextWord.toLowerCase();
-    console.log('next word: ' + nextWord)
-    controller.getRelatedWordsFromDB(nextWord, word, updateProbability);
-  }
-  cb();
 };
 
-function updateProbability(nextWord, lastWord, related) {
-  if (related === null) {
-    return;
-  }
-  for(let j=0; j < related.length; j++) {
-    if (related[j].word == nextWord) {
-      var oldProb = related[j].prob;
-      related[j] = {'word': nextWord, 'prob': oldProb+10};
+function updateProbability(nextWord, lastWord, related, vote) {
+    if (related === null) {
+        return;
     }
-  }
-  controller.updateRelated(lastWord, related);
+    for (let j = 0; j < related.length; j++) {
+        if (related[j].word == nextWord) {
+            var oldProb = related[j].prob;
+            var change = vote > 0 ? 10 : -10;
+            related[j] = { 'word': nextWord, 'prob': oldProb + change };
+        }
+    }
+    controller.updateRelated(lastWord, related);
 }
 
 function createPoem(poem, length, cb) {
-    if (length === 0) {
+    if (length === 1) {
         cb(poem);
     } else {
         length--;
         var words = poem.split(" ");
         var lastWord = words[words.length - 2];
         console.log('lastWord: ' + lastWord);
-        controller.getRelatedWordsFromDB(null, lastWord, function(oldWord, lastWord, related) {
+        controller.getRelatedWordsFromDB(null, lastWord, function (oldWord, lastWord, related) {
             if (related === null) {
                 cb(null);
             } else {

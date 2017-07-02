@@ -20,9 +20,8 @@ router.post('/getpoem', function(req, res) {
 router.post('/votepoem', function(req, res) {
   var poem = req.body.poem;
   var vote = req.body.vote;
-  console.log('postissa');
-  functions.updatePoem(poem, vote, function() {
-    res.send();
+  functions.updatePoem(poem, vote, function(message) {
+    res.send(message);
   });
 });
 

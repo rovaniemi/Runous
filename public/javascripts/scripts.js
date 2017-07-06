@@ -1,29 +1,29 @@
 function getPoem() {
   event.preventDefault();
 
-  var word = document.getElementById("runonAloitusSana").value;
-  var counter = document.getElementById("sanojenMaara").value;
+  var word = document.getElementById("start-word").value;
+  var counter = document.getElementById("word-amount").value;
 
   if (!/^[a-zåäöA-ZÅÄÖ]+$/.test(word)) {
-    document.getElementById("runous").innerHTML = "Kirjoita runolle aloitussana.";
-    document.getElementById("runonAloitusSana").value = '';
+    document.getElementById("poem").innerHTML = "Kirjoita runolle aloitussana.";
+    document.getElementById("start-word").value = '';
     return;
   }
 
   if (counter < 3) {
-    document.getElementById("runous").innerHTML = "Sanoja on oltava vähintään kolme.";
-    document.getElementById("sanojenMaara").value = 3;
+    document.getElementById("poem").innerHTML = "Sanoja on oltava vähintään kolme.";
+    document.getElementById("word-amount").value = 3;
     return;
   } else if (counter > 24) {
-    document.getElementById("runous").innerHTML = "Sanoja on oltava enintään 24.";
-    document.getElementById("sanojenMaara").value = 24;
+    document.getElementById("poem").innerHTML = "Sanoja on oltava enintään 24.";
+    document.getElementById("word-amount").value = 24;
     return;
   }
 
   // build a json object
   var data = { "word": word, "counter": counter };
   $.post('/getpoem', data, function (resp) {
-    document.getElementById("runous").innerHTML = resp;
+    document.getElementById("poem").innerHTML = resp;
     if (resp === "Sanaa ei löytynyt Kalevalasta.") {
       hideVoteButtons();
     } else {
@@ -34,11 +34,11 @@ function getPoem() {
 
 function votePoem(vote) {
   event.preventDefault();
-  var poem = document.getElementById("runous").innerHTML;
+  var poem = document.getElementById("poem").innerHTML;
   var data = { "poem": poem, "vote": vote };
   $.post('/votepoem', data, function (message) {
     if (message !== '') {
-        document.getElementById("runous").innerHTML = message;
+        document.getElementById("poem").innerHTML = message;
     }
     hideVoteButtons();
   });

@@ -4,7 +4,10 @@ var functions = require('../js/functions');
 var scripts = require('../public/javascripts/scripts');
 
 router.get('/', function(req, res, next) {
-    res.render('index');
+    functions.getSampleWords(function(sampleWords) {
+        res.locals.sampleWords = sampleWords;
+        res.render('index');
+    });
 });
 
 router.post('/getpoem', function(req, res) {

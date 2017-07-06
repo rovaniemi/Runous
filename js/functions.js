@@ -3,6 +3,24 @@ var controller = require('../db/controller');
 var helpers = require('../js/helpers');
 var lastVoted = '';
 
+exports.getSampleWords = function (cb){
+    var samples = [];
+    getRandomWords(samples, function (sampleWords) {
+        cb(sampleWords);
+    });
+}
+
+function getRandomWords(sampleWords, cb) {
+    controller.findRandomWord(function (result) {
+        if (sampleWords.length == 3) {
+            cb(sampleWords);
+        } else if (result !== null && !sampleWords.indexOf(result) !== -1) {
+            sampleWords.push(result.word);
+            getRandomWords(sampleWords, cb);
+        }
+    });
+}
+
 exports.getPoem = function (word, length, cb) {
     var poem = word + ' ';
     createPoem(poem, length, function (words) {
